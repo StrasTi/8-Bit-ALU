@@ -1,3 +1,17 @@
+// Copyright 2026 Timon Strassern
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE−2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 `include "../src/constants/constants.vh"
 `timescale 1ns/1ns
 
@@ -80,7 +94,7 @@ module eight_bit_alu_tb;
                 $display("FAILED: f=%b A=%d B=%d → got status=%d expected status=%d",
                          func, a, b, tb_status_flag_o, expected_status_flag_value);
             else
-                $display("PASSED: f=%b A=%d B=%d → result=%d",
+                $display("PASSED: f=%b A=%d B=%d → result=%b",
                          func, a, b, tb_y8_o);
         end
     endtask
@@ -144,7 +158,6 @@ module eight_bit_alu_tb;
 
     task test_subtraction;
         begin
-            // B - A
             // 0 - 0 = 0
             run_test_with_status(`OUTPUT_A_MINUS_B, 8'd0, 8'd0, 8'd0, `NO_BOROROW, `ZERO_FLAG);
             // 1 - 0 = 1
